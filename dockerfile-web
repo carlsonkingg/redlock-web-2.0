@@ -1,0 +1,38 @@
+# Menggunakan image php dengan version 8.1.0 dengan webserver apache.
+FROM php:8.1-apache
+
+# Mengcopy file konfigurasi server apache yang sudah dibuat.
+COPY apacheweb.conf /etc/apache2/sites-available/apacheweb.conf
+
+# Mengcopy isi file index.php untuk tampilan web.
+COPY index.php /var/www/html/index.php
+
+# Mengcopy isi file redlock-db.sql untuk backup database yang digunakan.
+COPY redlock-db.sql /docker-entrypoint-initdb.d/redlock-db.sql
+
+# Melakukan update pada beberapa packages menjadi version terbaru.
+RUN apt-get update
+
+# Melakukan instalasi client mysql. -y berfungsi untuk secara otomatis mengatakan "yes". 
+RUN apt-get install -y default-mysql-client
+
+# Melakukan instalasi extension mysql di docker agar kira bisa mengakses mysql melalui php. 
+RUN docker-php-ext-install mysqli
+
+# Menghapus cache yang ada setelah menginstall sesuatu.
+RUN apt-get clean
+
+# Melakukan setting akses control list owner ke www-data.
+RUN chown -R www-data /var/www/html
+
+# Melakukan setting akses control list group ke www-data.
+RUN chgrp -R www-data /var/www/html
+
+# Menghilangkan permission 'w' dan 'x' untuk others.
+RUN chmod -R o-wx /var/www/html
+
+# Menjalankan service apache.
+RUN service apache2 start
+
+# Melakukan setting port apache di port 80.
+EXPOSE 80

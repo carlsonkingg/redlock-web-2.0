@@ -1,0 +1,19 @@
+# Menggunakan image mariadb dengan version terbaru.
+FROM mariadb:latest
+
+# Mengcopy isi file index.php untuk tampilan web.
+COPY index.php /var/www/html/index.php
+
+# Mengcopy isi file redlock-db.sql untuk backup database yang digunakan.
+COPY redlock-db.sql /docker-entrypoint-initdb.d/redlock-db.sql
+
+# Melakukan update pada beberapa packages menjadi version terbaru.
+RUN apt-get update
+
+# Melakukan instalasi client mariadb. -y berfungsi untuk secara otomatis mengatakan "yes".
+RUN apt-get install -y mariadb-client
+
+# Menghapus cache yang ada setelah menginstall sesuatu.
+RUN apt-get clean
+
+
