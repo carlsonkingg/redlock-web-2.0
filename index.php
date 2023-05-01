@@ -21,14 +21,14 @@
     $res = $conn->query($sql);
 
     # Membuat variable untuk menghitung jumlah data yang ada
-    $total = 0;
+    $total;
 
     # Validasi yang dilakukan sesuai dengan data yang didapatkan variable res.
     if($res->num_rows > 0)
     {
         # Data akan diprint jika ada data dalam table users
         while($row = $res->fetch_assoc())
-        {
+        { 
             echo "ID: ". $row["ID"]. " | Nama: ". $row["Nama"]. " | Alamat: ". $row["Alamat"]. " | Jabatan: ". $row["Jabatan"]. "<br>";
             $total = $total+1;
         }
