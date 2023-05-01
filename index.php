@@ -33,7 +33,7 @@
             $total = $total++;
         }
         # Menampilkan jumlah data yang ada
-        echo "Total data: ". $total;
+        echo "Total data: ". "$total";
     }
     else
     {
