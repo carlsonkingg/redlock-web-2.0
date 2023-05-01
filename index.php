@@ -21,26 +21,25 @@
     $res = $conn->query($sql);
 
     # Membuat variable untuk menghitung jumlah data yang ada
-    $fin = 0;
+    $total = 0;
 
     # Validasi yang dilakukan sesuai dengan data yang didapatkan variable res.
     if($res->num_rows > 0)
     {
         # Data akan diprint jika ada data dalam table users
         while($row = $res->fetch_assoc())
-        { 
-            // echo "ID: ". $row["ID"]. " | Nama: ". $row["Nama"]. " | Alamat: ". $row["Alamat"]. " | Jabatan: ". $row["Jabatan"]. "<br>";
-            $fin++;
+        {
+            echo "ID: ". $row["ID"]. " | Nama: ". $row["Nama"]. " | Alamat: ". $row["Alamat"]. " | Jabatan: ". $row["Jabatan"]. "<br>";
+            $total = $total++;
         }
-        # Menampilkan jumlah data yang ada   
+        # Menampilkan jumlah data yang ada
+        echo "Total data: ". $total;
     }
     else
     {
         # Akan ditampilkan "0 results" jika tidak ada data dalam table users.
         echo "0 results";
     }
-    echo "Total data: ";
-    echo $fin;
 
     # Menutup connection.
     $conn->close();
