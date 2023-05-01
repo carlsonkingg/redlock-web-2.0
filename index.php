@@ -29,8 +29,8 @@
         # Data akan diprint jika ada data dalam table users
         while($row = $res->fetch_assoc())
         { 
-            echo "ID: ". $row["ID"]. " | Nama: ". $row["Nama"]. " | Alamat: ". $row["Alamat"]. " | Jabatan: ". $row["Jabatan"]. "<br>";
             $total = $total+1;
+            echo "ID: ". $row["ID"]. " | Nama: ". $row["Nama"]. " | Alamat: ". $row["Alamat"]. " | Jabatan: ". $row["Jabatan"]. "<br>";
         }
         # Menampilkan jumlah data yang ada   
     }
