@@ -16,7 +16,6 @@
 
     # Variable untuk mengambil seluruh data yang berada dalam table users.
     $sql = "SELECT * FROM users";
-    $sql1 = "SELECT COUNT(*) as count FROM users"
 
     # Mendapatkan hasil dari variable sql diatas.
     $res = $conn->query($sql);
@@ -31,7 +30,7 @@
         while($row = $res->fetch_assoc())
         { 
             echo "ID: ". $row["ID"]. " | Nama: ". $row["Nama"]. " | Alamat: ". $row["Alamat"]. " | Jabatan: ". $row["Jabatan"]. "<br>";
-            // $total = $total+1;
+            $total = $total+1;
         }
         # Menampilkan jumlah data yang ada   
     }
@@ -40,8 +39,7 @@
         # Akan ditampilkan "0 results" jika tidak ada data dalam table users.
         echo "0 results";
     }
-    // echo "Total data: ". $total;
-    echo $row["count"];
+    echo "Total data: ". "$total";
 
     # Menutup connection.
     $conn->close();
