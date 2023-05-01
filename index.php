@@ -39,7 +39,7 @@
         # Akan ditampilkan "0 results" jika tidak ada data dalam table users.
         echo "0 results";
     }
-    echo "Total data: ". "$total";
+    echo "Total data: $d". $total;
 
     # Menutup connection.
     $conn->close();
