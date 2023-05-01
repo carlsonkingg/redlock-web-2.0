@@ -30,16 +30,16 @@
         while($row = $res->fetch_assoc())
         {
             echo "ID: ". $row["ID"]. " | Nama: ". $row["Nama"]. " | Alamat: ". $row["Alamat"]. " | Jabatan: ". $row["Jabatan"]. "<br>";
-            $total = $total+1;
+            $total = $total++;
         }
-        # Menampilkan jumlah data yang ada
-        echo "Total data: ". "$total";
+        # Menampilkan jumlah data yang ada   
     }
     else
     {
         # Akan ditampilkan "0 results" jika tidak ada data dalam table users.
         echo "0 results";
     }
+    echo "Total data: ". "$total";
 
     # Menutup connection.
     $conn->close();
